@@ -1,0 +1,17 @@
+{
+  "name": "oligriffiths/kodekit-demo",
+  "description": "A demo of KodeKit",
+  "license": "MPLv2",
+  "require": {
+    "php": ">=5.5",
+    "oligriffiths/kodekit-application": "dev-master"
+  },
+  "require-dev": {
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "repositories":[
+    { "type": "vcs", "url": "git@github.com:oligriffiths/kodekit-application.git" },
+    { "type": "vcs", "url": "git@github.com:oligriffiths/kodekit.git" }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "d7be83abdb3b6938e3ef96984bceac2d",
+    "content-hash": "436360bf047b719cdead9f1e57123d1a",
+    "packages": [
+        {
+            "name": "oligriffiths/kodekit",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oligriffiths/kodekit.git",
+                "reference": "346c5f2cc5c46e0a58222b2c66c9ff9cf42e01e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oligriffiths/kodekit/zipball/346c5f2cc5c46e0a58222b2c66c9ff9cf42e01e8",
+                "reference": "346c5f2cc5c46e0a58222b2c66c9ff9cf42e01e8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "license": [
+                "MPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Timble",
+                    "homepage": "https://github.com/tumble"
+                }
+            ],
+            "description": "KodeKit library",
+            "homepage": "https://github.com/oligriffiths/kodekit",
+            "keywords": [
+                "kodekit",
+                "library"
+            ],
+            "support": {
+                "source": "https://github.com/oligriffiths/kodekit/tree/develop",
+                "issues": "https://github.com/oligriffiths/kodekit/issues"
+            },
+            "time": "2016-03-28 20:24:33"
+        },
+        {
+            "name": "oligriffiths/kodekit-application",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oligriffiths/kodekit-application.git",
+                "reference": "8b247ef9b53735e3f4cab1918f2946f72f77f066"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oligriffiths/kodekit-application/zipball/8b247ef9b53735e3f4cab1918f2946f72f77f066",
+                "reference": "8b247ef9b53735e3f4cab1918f2946f72f77f066",
+                "shasum": ""
+            },
+            "require": {
+                "oligriffiths/kodekit": "dev-develop",
+                "php": ">=5.5.0"
+            },
+            "type": "component",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "license": [
+                "MPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Timble",
+                    "homepage": "https://github.com/tumble"
+                }
+            ],
+            "description": "KodeKit Application Component",
+            "homepage": "https://github.com/oligriffiths/kodekit-application",
+            "keywords": [
+                "application",
+                "component",
+                "kodekit"
+            ],
+            "support": {
+                "source": "https://github.com/oligriffiths/kodekit-application/tree/master",
+                "issues": "https://github.com/oligriffiths/kodekit-application/issues"
+            },
+            "time": "2016-03-28 20:56:23"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "oligriffiths/kodekit-application": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.5"
+    },
+    "platform-dev": []
+}

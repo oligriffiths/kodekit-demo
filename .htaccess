@@ -1,0 +1,106 @@
+##  Can be commented out if causes errors, see notes above.
+Options +FollowSymLinks
+
+#  Use mod_rewrite
+RewriteEngine On
+
+### SET HTTP_AUTHORIZATION Variable for Fast CGI ###
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+### Ensures apache does not re-process rules, bit hacky, but hey, [NS] doesnt seem to work ###
+RewriteCond %{ENV:REDIRECT_STATUS} !^$
+RewriteRule .* - [L]
+
+RewriteRule ^favicon\.ico /application/site/public/theme/crowdcando/images/favicon.ico [L]
+RewriteRule ^robots\.txt /application/site/public/robots.txt [L]
+
+### 404's ###
+#RewriteCond %{REQUEST_URI}% ^/\.(.*) [OR]
+RewriteCond %{REQUEST_URI}% ^/application [OR]
+RewriteCond %{REQUEST_URI}% ^/component [OR]
+RewriteCond %{REQUEST_URI}% ^/sites [OR]
+RewriteCond %{REQUEST_URI}% ^/vendor/?.*\.[^js|css|jpe?g|gif|bmp|png|ico|ttf|woff|svg|eot]
+RewriteRule ^(.*)$ - [R=404,L,NS]
+
+
+### THEME Rewrites ###
+RewriteRule ^theme/(.*)$ /application/site/public/theme/$1 [L,NS]
+
+
+### Assets Rewrite ###
+# These rules check if a assets file exists first in the application & component dir
+# then fall back to /component dir
+
+#System assets
+RewriteRule ^assets/(images|css|js)/(.*)$ /library/resources/assets/$1/$2 [L]
+
+#Admin component assets, check admin component
+RewriteCond %{DOCUMENT_ROOT}/application/admin/component/%1/resources/assets/%2 -f
+RewriteRule .* /application/admin/component/%1/resources/assets/%2 [L]
+
+#Admin component assets, check base component
+RewriteCond %{DOCUMENT_ROOT}/component/%1/resources/assets/%2 -f
+RewriteRule .* /component/%1/resources/assets/%2 [L]
+
+#Site component assets, check site component
+RewriteCond %{REQUEST_URI} assets/([_a-z-]+)/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/application/site/component/%1/resources/assets/%2 -f
+RewriteRule .* /application/site/component/%1/resources/assets/%2 [L]
+
+#Site component assets, check base component
+RewriteCond %{REQUEST_URI} assets/([_a-z-]+)/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/component/%1/resources/assets/%2 -f
+RewriteRule .* /component/%1/resources/assets/%2 [L]
+
+
+
+#### FILE Rewrite ###
+RewriteRule files/?([_a-z-]+)/(.*)$ /sites/$1/files/$2 [L,NS]
+
+
+
+### SITE Rewrite ###
+RewriteCond %{REQUEST_URI} !^/application
+RewriteCond %{REQUEST_URI} !^/administrator
+RewriteCond %{REQUEST_URI} !^/component
+RewriteCond %{REQUEST_URI} !^/framework
+RewriteCond %{REQUEST_URI} !^/sites
+RewriteCond %{REQUEST_URI} !^/vendor
+RewriteCond %{REQUEST_URI} !^/assets
+RewriteCond %{REQUEST_URI} !^/administrator/assets
+RewriteCond %{REQUEST_URI} !^/theme
+RewriteRule ^(.*)$ /application/site/public/index.php [L,NS]
+
+
+
+
+########### Begin - Optimal default expiration time
+## Note: You need to enable the "System - Expire" plugin for this to work optimally
+## Based on: http://akeeba.assembla.com/code/master-htaccess/git/nodes/htaccess.txt
+<IfModule mod_expires.c>
+    # Uncomment following line if you want to enable expires
+    #ExpiresActive On
+
+    ExpiresByType text/css "now plus 1 year"
+    ExpiresByType application/javascript "now plus 1 year"
+    ExpiresByType application/x-javascript "now plus 1 year"
+
+    ExpiresByType image/bmp "now plus 1 year"
+    ExpiresByType image/gif "now plus 1 year"
+    ExpiresByType image/jpeg "now plus 1 year"
+    ExpiresByType image/png "now plus 1 year"
+    ExpiresByType image/svg+xml "now plus 1 year"
+    ExpiresByType image/vnd.microsoft.icon "now plus 1 year"
+    ExpiresByType image/x-icon "now plus 1 year"
+    ExpiresByType image/ico "now plus 1 year"
+    ExpiresByType image/icon "now plus 1 year"
+    ExpiresByType text/ico "now plus 1 year"
+    ExpiresByType application/ico "now plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header unset ETag
+	FileETag None
+</IfModule>
+########### End - Optimal expiration time
