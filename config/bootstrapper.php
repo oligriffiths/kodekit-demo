@@ -5,8 +5,8 @@ return [
         'application' => [
             'request'  => [
                 'query' => [
-                    'component' => 'foo',
-                    'view' => 'bar',
+//                    'component' => 'foo',
+//                    'view' => 'bar',
                 ],
             ],
         ],

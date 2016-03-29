@@ -47,7 +47,3 @@ if (file_exists($kodekit->getRootPath(). '/config/bootstrapper.php')) {
 }
 
 $bootstrapper->bootstrap();
-
-
-require_once __DIR__ . '/../../../vendor/oligriffiths/kodekit-application/autoload.php';
-
